@@ -2,10 +2,17 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Script from "next/script";
 import Head from "next/head";
+import Header from "@/components/layouts/Header";
+import Footer from "@/components/layouts/Footer";
+import Preloader from "@/components/Preloader";
 
 const inter = Inter({ subsets: ["latin"] });
 
-export default function RootLayout({ children }) {
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
   return (
     <html lang="en">
       <Head>
@@ -21,7 +28,14 @@ export default function RootLayout({ children }) {
         <Script src="/js/pace.min.js"></Script>
       </Head>
       <body className={inter.className}>
+        <Header />
+
         {children}
+
+        <Footer />
+
+        <Preloader />
+
         <Script src="/js/jquery-2.1.3.min.js"></Script>
         <Script src="/js/plugins.js"></Script>
         <Script src="/js/main.js"></Script>

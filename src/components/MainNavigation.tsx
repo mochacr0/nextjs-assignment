@@ -1,3 +1,6 @@
+import { categories } from "@/common/data/categoryData";
+import Link from "next/link";
+
 const MainNavigation: React.FC = () => {
   return (
     <nav id="main-nav-wrap">
@@ -8,28 +11,17 @@ const MainNavigation: React.FC = () => {
           </a>
         </li>
         <li className="has-children">
-          <a href="category.html" title="">
+          <a href="/categories" title="">
             Categories
           </a>
           <ul className="sub-menu">
-            <li>
-              <a href="category.html">Wordpress</a>
-            </li>
-            <li>
-              <a href="category.html">HTML</a>
-            </li>
-            <li>
-              <a href="category.html">Photography</a>
-            </li>
-            <li>
-              <a href="category.html">UI</a>
-            </li>
-            <li>
-              <a href="category.html">Mockups</a>
-            </li>
-            <li>
-              <a href="category.html">Branding</a>
-            </li>
+            {categories.map((category, index) => {
+              return (
+                <li key={`category ${index}`}>
+                  <a href={`/categories?category=${category}`}>{category}</a>
+                </li>
+              );
+            })}
           </ul>
         </li>
         <li className="has-children">

@@ -159,15 +159,47 @@ export const videoPosts: VideoPostModel[] = [
   },
 ];
 
-export default function getPosts() {
-  const posts: PostModel[] = [
+const posts: PostModel[] = [
+  ...standardPosts,
+  ...audioPosts,
+  ...quotePosts,
+  ...videoPosts,
+];
+
+export default function getPosts({
+  category = "",
+  pageNumber = 0,
+  pageSize = 10,
+}: {
+  category?: string;
+  pageNumber?: number;
+  pageSize?: number;
+}): PostModel[] {
+  let posts: PostModel[] = [
     ...standardPosts,
     ...audioPosts,
     ...quotePosts,
     ...videoPosts,
-    // ...gridPostSlides,
   ];
-  // Shuffle the posts
+
+  // Filter posts by category
+  if (category.length > 0) {
+    posts = posts.filter((post) => {
+      return (
+        "categories" in post &&
+        post.categories
+          .map((category) => category.toLowerCase())
+          .includes(category.toLowerCase())
+      );
+    });
+  }
+
+  // Paginate postss
+  const startSliceIndex = pageSize * pageNumber;
+  const endSliceIndex = startSliceIndex + pageSize;
+  posts = posts.slice(startSliceIndex, endSliceIndex);
+
+  // Shuffle posts
   posts.sort(() => Math.random() - 0.5);
   return posts;
 }

@@ -8,7 +8,7 @@ const Header = () => {
 
       <div className="row header-content">
         <div className="logo">
-          <a href="index.html">Author</a>
+          <a href="/">Author</a>
         </div>
 
         <MainNavigation />
