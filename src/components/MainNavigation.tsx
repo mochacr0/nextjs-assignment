@@ -44,7 +44,7 @@ const MainNavigation: React.FC = () => {
           </ul>
         </li>
         <li>
-          <a href="style-guide.html" title="">
+          <a href="/style-guide" title="">
             Styles
           </a>
         </li>
