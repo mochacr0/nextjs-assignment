@@ -54,7 +54,7 @@ const MainNavigation: React.FC = () => {
           </a>
         </li>
         <li>
-          <a href="contact.html" title="">
+          <a href="/contact" title="">
             Contact
           </a>
         </li>

@@ -24,8 +24,6 @@ export default function RootLayout({
           name="viewport"
           content="width=device-width, initial-scale=1, maximum-scale=1"
         />
-        <Script src="/js/modernizr.js"></Script>
-        <Script src="/js/pace.min.js"></Script>
       </Head>
       <body className={inter.className}>
         <Header />
@@ -35,9 +33,14 @@ export default function RootLayout({
         <Footer />
 
         <Preloader />
-
+        <Script src="/js/modernizr.js" strategy="beforeInteractive"></Script>
+        <Script src="/js/pace.min.js" strategy="beforeInteractive"></Script>
         <Script src="/js/jquery-2.1.3.min.js"></Script>
         <Script src="/js/plugins.js"></Script>
+        <Script
+          src="https://maps.googleapis.com/maps/api/js?v=3.13&sensor=false"
+          async
+        />
         <Script src="/js/main.js"></Script>
       </body>
     </html>
