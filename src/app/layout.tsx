@@ -6,7 +6,7 @@ import Header from "@/components/layouts/Header";
 import Footer from "@/components/layouts/Footer";
 import Preloader from "@/components/Preloader";
 
-const inter = Inter({ subsets: ["latin"] });
+// const inter = Inter({ subsets: ["latin"] });
 
 export default function RootLayout({
   children,
@@ -14,7 +14,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <Head>
         <meta charSet="utf-8" />
         <title>Abstract</title>
@@ -25,7 +25,7 @@ export default function RootLayout({
           content="width=device-width, initial-scale=1, maximum-scale=1"
         />
       </Head>
-      <body className={inter.className}>
+      <body suppressHydrationWarning>
         <Header />
 
         {children}

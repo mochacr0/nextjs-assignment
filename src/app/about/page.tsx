@@ -5,7 +5,7 @@ const AboutPage = () => {
         <div className="col-twelve">
           <section>
             <div className="content-media">
-              <img src="images/thumbs/about-us.jpg" />
+              <img src="/images/thumbs/about-us.jpg" />
             </div>
 
             <div className="primary-content">

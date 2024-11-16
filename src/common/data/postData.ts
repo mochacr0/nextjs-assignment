@@ -10,7 +10,7 @@ import {
 const standardPosts: StandardPostModel[] = [
   {
     articleUrl: "single-standard.html",
-    thumbnailUrl: "images/thumbs/diagonal-building.jpg",
+    thumbnailUrl: "/images/thumbs/diagonal-building.jpg",
     thumbnailAlt: "building",
     categories: ["Design", "Photography"],
     title: "Just a Standard Format Post.",
@@ -22,7 +22,7 @@ const standardPosts: StandardPostModel[] = [
   },
   {
     articleUrl: "single-standard.html",
-    thumbnailUrl: "images/thumbs/ferris-wheel.jpg",
+    thumbnailUrl: "/images/thumbs/ferris-wheel.jpg",
     thumbnailAlt: "ferris wheel",
     categories: ["Design", "UI"],
     title: "This Is Another Standard Format Post.",
@@ -34,7 +34,7 @@ const standardPosts: StandardPostModel[] = [
   },
   {
     articleUrl: "single-standard.html",
-    thumbnailUrl: "images/thumbs/shutterbug.jpg",
+    thumbnailUrl: "/images/thumbs/shutterbug.jpg",
     thumbnailAlt: "Shutterbug",
     categories: ["Photography", "html"],
     title: "Photography Skills Can Improve Your Graphic Design.",
@@ -46,7 +46,7 @@ const standardPosts: StandardPostModel[] = [
   },
   {
     articleUrl: "single-standard.html",
-    thumbnailUrl: "images/thumbs/usaf-rocket.jpg",
+    thumbnailUrl: "/images/thumbs/usaf-rocket.jpg",
     thumbnailAlt: "USAF rocket",
     categories: ["Branding", "Mockup"],
     title: "Photography Skills Can Improve Your Graphic Design.",
@@ -58,7 +58,7 @@ const standardPosts: StandardPostModel[] = [
   },
   {
     articleUrl: "single-standard.html",
-    thumbnailUrl: "images/thumbs/diagonal-pattern.jpg",
+    thumbnailUrl: "/images/thumbs/diagonal-pattern.jpg",
     thumbnailAlt: "Pattern",
     categories: ["Design", "UI"],
     title: "The 10 Golden Rules of Clean Simple Design.",
@@ -70,7 +70,7 @@ const standardPosts: StandardPostModel[] = [
   },
   {
     articleUrl: "single-standard.html",
-    thumbnailUrl: "images/thumbs/lighthouse.jpg",
+    thumbnailUrl: "/images/thumbs/lighthouse.jpg",
     thumbnailAlt: "Lighthouse",
     categories: ["Photography", "Design"],
     title: "Breathtaking Photos of Lighthouses.",
@@ -82,7 +82,7 @@ const standardPosts: StandardPostModel[] = [
   },
   {
     articleUrl: "single-standard.html",
-    thumbnailUrl: "images/thumbs/liberty.jpg",
+    thumbnailUrl: "/images/thumbs/liberty.jpg",
     thumbnailAlt: "Lighthouse",
     categories: ["Branding", "html"],
     title: "Designing With Black and White.",
@@ -97,7 +97,7 @@ const standardPosts: StandardPostModel[] = [
 const audioPosts: AudioPostModel[] = [
   {
     articleUrl: "single-audio.html",
-    thumbnailUrl: "images/thumbs/concert.jpg",
+    thumbnailUrl: "/images/thumbs/concert.jpg",
     thumbnailAlt: "concert",
     categories: ["Design", "Music"],
     title: "This Is a Audio Format Post.",
@@ -145,7 +145,7 @@ export const gridPostSlides: GridPostSlideModel[] = [
 export const videoPosts: VideoPostModel[] = [
   {
     articleUrl: "single-video.html",
-    thumbnailUrl: "images/thumbs/ottawa-bokeh.jpg",
+    thumbnailUrl: "/images/thumbs/ottawa-bokeh.jpg",
     thumbnailAlt: "bokeh",
     categories: ["Design", "Branding"],
     title: "This Is a Video Post Format.",

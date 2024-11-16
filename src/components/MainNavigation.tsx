@@ -1,3 +1,4 @@
+import { blogs } from "@/common/data/blogData";
 import { categories } from "@/common/data/categoryData";
 import Link from "next/link";
 
@@ -17,7 +18,7 @@ const MainNavigation: React.FC = () => {
           <ul className="sub-menu">
             {categories.map((category, index) => {
               return (
-                <li key={`category ${index}`}>
+                <li key={category}>
                   <a href={`/categories?category=${category}`}>{category}</a>
                 </li>
               );
@@ -29,7 +30,14 @@ const MainNavigation: React.FC = () => {
             Blog
           </a>
           <ul className="sub-menu">
-            <li>
+            {blogs.map((blog) => {
+              return (
+                <li key={blog.slug}>
+                  <a href={`/blogs/${blog.slug}`}>{blog.title}</a>
+                </li>
+              );
+            })}
+            {/* <li>
               <a href="single-video.html">Video Post</a>
             </li>
             <li>
@@ -40,7 +48,7 @@ const MainNavigation: React.FC = () => {
             </li>
             <li>
               <a href="single-standard.html">Standard Post</a>
-            </li>
+            </li> */}
           </ul>
         </li>
         <li>

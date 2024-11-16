@@ -7,7 +7,7 @@ const AudioPost: React.FC<AudioPostProps> = (props) => {
     <article className="brick entry format-audio animate-this">
       <div className="entry-thumb">
         <Link href="single-audio.html" className="thumb-link">
-          <img src="images/thumbs/concert.jpg" alt="concert" />
+          <img src="/images/thumbs/concert.jpg" alt="concert" />
         </Link>
 
         <div className="audio-wrap">

@@ -27,7 +27,7 @@ const StyleGuidePage = () => {
                 height="120"
                 className="pull-left"
                 alt="sample-image"
-                src="images/sample-image.jpg"
+                src="/images/sample-image.jpg"
               />
             </a>
             Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec
@@ -241,7 +241,7 @@ const StyleGuidePage = () => {
         <div className="col-six tab-full">
           <h3>Responsive Image</h3>
           <p>
-            <img src="images/shutterbug.jpg" />
+            <img src="/images/shutterbug.jpg" />
           </p>
         </div>
 

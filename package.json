@@ -12,6 +12,7 @@
     "@types/node": "^22.9.0",
     "@types/react": "^18.3.12",
     "@types/react-dom": "^18.3.1",
+    "html-react-parser": "^5.1.18",
     "mediaelement": "^7.0.5",
     "next": "13.5.7",
     "react": "^18",
