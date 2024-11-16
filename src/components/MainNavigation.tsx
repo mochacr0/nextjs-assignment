@@ -49,7 +49,7 @@ const MainNavigation: React.FC = () => {
           </a>
         </li>
         <li>
-          <a href="about.html" title="">
+          <a href="/about" title="">
             About
           </a>
         </li>

@@ -174,7 +174,7 @@ export default function getPosts({
   category?: string;
   pageNumber?: number;
   pageSize?: number;
-}): PostModel[] {
+} = {}): PostModel[] {
   let posts: PostModel[] = [
     ...standardPosts,
     ...audioPosts,
