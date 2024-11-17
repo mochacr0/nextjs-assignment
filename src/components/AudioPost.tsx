@@ -14,9 +14,8 @@ const AudioPost: React.FC<AudioPostProps> = (props) => {
           <audio
             id="player"
             src={props.audioSourceUrl}
-            // width="100%"
-            // height="42"
             controls={true}
+            style={{ width: "100%" }}
           ></audio>
         </div>
       </div>

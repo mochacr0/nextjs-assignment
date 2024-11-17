@@ -1087,6 +1087,7 @@ input::-moz-focus-inner {
 
 .pagination .inactive,
 .pagination .inactive:hover {
+  cursor: default;
   background-color: #dbdbdb;
   color: #919191;
 }

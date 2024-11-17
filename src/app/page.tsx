@@ -1,4 +1,4 @@
-import getPosts, { gridPostSlides } from "@/common/data/postData";
+import { gridPostSlides, paginatePosts } from "@/common/data/postData";
 import AudioPost from "@/components/AudioPost";
 import GalleryPost from "@/components/GalleryPost";
 import GridPost from "@/components/GridPost";
@@ -8,7 +8,18 @@ import QuotePost from "@/components/QuotePost";
 import StandardPost from "@/components/StandardPost";
 import VideoPost from "@/components/VideoPost";
 
-const HomePage: React.FC = () => {
+type HomePageProps = {
+  searchParams: Promise<{
+    category: string;
+    pageNumber: number;
+    pageSize: number;
+  }>;
+};
+
+const HomePage = async ({ searchParams }: HomePageProps) => {
+  const { category, pageNumber, pageSize } = await searchParams;
+  const paginatedPosts = paginatePosts({ category, pageNumber, pageSize: 3 });
+
   return (
     <section id="bricks">
       <div className="row masonry">
@@ -17,7 +28,7 @@ const HomePage: React.FC = () => {
 
           <GridPost slides={gridPostSlides} />
 
-          {getPosts().map((post, index) => {
+          {paginatedPosts.items.map((post, index) => {
             if ("audioSourceUrl" in post) {
               return <AudioPost key={index} {...post} />;
             } else if ("quote" in post) {
@@ -35,7 +46,7 @@ const HomePage: React.FC = () => {
         </div>
       </div>
 
-      <Pagination />
+      <Pagination totalPages={paginatedPosts.totalPages} />
     </section>
   );
 };

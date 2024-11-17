@@ -1,3 +1,4 @@
+import { PostsPaginationModel } from "@/models/paginationModels";
 import {
   AudioPostModel,
   GridPostSlideModel,
@@ -166,7 +167,7 @@ const posts: PostModel[] = [
   ...videoPosts,
 ];
 
-export default function getPosts({
+export function getPosts({
   category = "",
   pageNumber = 0,
   pageSize = 10,
@@ -202,4 +203,53 @@ export default function getPosts({
   // Shuffle posts
   posts.sort(() => Math.random() - 0.5);
   return posts;
+}
+
+export function paginatePosts({
+  category = "",
+  pageNumber = 0,
+  pageSize = 10,
+}: {
+  category?: string;
+  pageNumber?: number;
+  pageSize?: number;
+} = {}): PostsPaginationModel {
+  let posts: PostModel[] = [
+    ...standardPosts,
+    ...audioPosts,
+    ...quotePosts,
+    ...videoPosts,
+  ];
+
+  // Filter posts by category
+  if (category.length > 0) {
+    posts = posts.filter((post) => {
+      return (
+        "categories" in post &&
+        post.categories
+          .map((category) => category.toLowerCase())
+          .includes(category.toLowerCase())
+      );
+    });
+  }
+
+  const totalItems = posts.length;
+  const totalPages = Math.ceil(totalItems / pageSize);
+
+  // Paginate postss
+  const startSliceIndex = pageNumber * pageSize;
+  const endSliceIndex = startSliceIndex + pageSize;
+  posts = posts.slice(startSliceIndex, endSliceIndex);
+
+  // Shuffle posts
+  posts.sort(() => Math.random() - 0.5);
+
+  const paginatedPosts: PostsPaginationModel = {
+    items: posts,
+    totalItems,
+    hasNext: totalPages > pageNumber + 1,
+    totalPages,
+  };
+
+  return paginatedPosts;
 }

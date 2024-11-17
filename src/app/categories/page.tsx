@@ -1,4 +1,4 @@
-import getPosts from "@/common/data/postData";
+import { paginatePosts } from "@/common/data/postData";
 import AudioPost from "@/components/AudioPost";
 import GalleryPost from "@/components/GalleryPost";
 import LinkPost from "@/components/LinkPost";
@@ -8,12 +8,16 @@ import StandardPost from "@/components/StandardPost";
 import VideoPost from "@/components/VideoPost";
 
 type CategoriesPageProps = {
-  searchParams: Promise<{ category?: string }>;
+  searchParams: Promise<{
+    category: string;
+    pageNumber: number;
+    pageSize: number;
+  }>;
 };
 
-const CategoriesPage = async (props: CategoriesPageProps) => {
-  const { category } = await props.searchParams;
-  const matchedPosts = getPosts({ category });
+const CategoriesPage = async ({ searchParams }: CategoriesPageProps) => {
+  const { category, pageNumber, pageSize } = await searchParams;
+  const paginatedPosts = paginatePosts({ category, pageNumber, pageSize: 3 });
 
   return (
     <>
@@ -29,7 +33,7 @@ const CategoriesPage = async (props: CategoriesPageProps) => {
           <div className="bricks-wrapper">
             <div className="grid-sizer"></div>
 
-            {matchedPosts.map((post, index) => {
+            {paginatedPosts.items.map((post, index) => {
               if ("audioSourceUrl" in post) {
                 return <AudioPost key={index} {...post} />;
               } else if ("quote" in post) {
@@ -46,7 +50,7 @@ const CategoriesPage = async (props: CategoriesPageProps) => {
             })}
           </div>
         </div>
-        <Pagination />
+        <Pagination totalPages={paginatedPosts.totalPages} />
       </section>
     </>
   );

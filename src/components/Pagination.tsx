@@ -1,36 +1,71 @@
-const Pagination: React.FC = () => {
+"use client";
+
+import { usePathname, useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
+
+type PaginationProps = {
+  totalPages: number;
+};
+
+const Pagination = ({ totalPages }: PaginationProps) => {
+  const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+  const pageNumber = Number(searchParams.get("pageNumber")) || 0;
+
+  const createPageURL = (pageNumber: number | string) => {
+    const params = new URLSearchParams(searchParams.toString());
+    params.set("pageNumber", pageNumber.toString());
+    return `${pathname}?${params.toString()}`;
+  };
+
+  const navigateToPage = (pageNumber: number) => {
+    router.replace(createPageURL(pageNumber));
+  };
+
+  const navigateBackward = () => {
+    navigateToPage(pageNumber - 1);
+  };
+
+  const navigateForward = () => {
+    navigateToPage(pageNumber + 1);
+  };
+
   return (
     <div className="row">
       <nav className="pagination">
-        <span className="page-numbers prev inactive">Prev</span>
-        <span className="page-numbers current">1</span>
-        <a href="#" className="page-numbers">
-          2
-        </a>
-        <a href="#" className="page-numbers">
-          3
-        </a>
-        <a href="#" className="page-numbers">
-          4
-        </a>
-        <a href="#" className="page-numbers">
-          5
-        </a>
-        <a href="#" className="page-numbers">
-          6
-        </a>
-        <a href="#" className="page-numbers">
-          7
-        </a>
-        <a href="#" className="page-numbers">
-          8
-        </a>
-        <a href="#" className="page-numbers">
-          9
-        </a>
-        <a href="#" className="page-numbers next">
-          Next
-        </a>
+        {pageNumber > 0 ? (
+          <button className="page-numbers prev" onClick={navigateBackward}>
+            Prev
+          </button>
+        ) : (
+          <button className="page-numbers prev inactive">Prev</button>
+        )}
+        {Array.from({ length: totalPages }, (_, index) => {
+          if (index === pageNumber) {
+            return (
+              <button key={index} className="page-numbers current">
+                {index + 1}
+              </button>
+            );
+          }
+          return (
+            <button
+              key={index}
+              className="page-numbers"
+              onClick={() => navigateToPage(index)}
+            >
+              {index + 1}
+            </button>
+          );
+        })}
+        {pageNumber < totalPages - 1 ? (
+          <button className="page-numbers next" onClick={navigateForward}>
+            Next
+          </button>
+        ) : (
+          <button className="page-numbers next inactive">Next</button>
+        )}
       </nav>
     </div>
   );
