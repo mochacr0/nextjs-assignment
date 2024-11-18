@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { VideoPostModel as VideoPostProps } from "../models/postModels";
+import { VideoPostModel as VideoPostProps } from "@/models/postModels";
 
 const VideoPost: React.FC<VideoPostProps> = (props) => {
   return (

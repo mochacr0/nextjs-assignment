@@ -58,7 +58,6 @@ export type PostModel =
   | StandardPostModel
   | AudioPostModel
   | QuotePostModel
-  // | GridPostSlideModel
   | GalleryPostModel
   | LinkPostModel
   | VideoPostModel;

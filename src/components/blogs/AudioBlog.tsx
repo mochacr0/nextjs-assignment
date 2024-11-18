@@ -1,6 +1,6 @@
 import { BlogContentModel, AudioHeaderMedia } from "@/models/blogModels";
+import BlogRelatedPostsNavigation from "./BlogRelatedPostsNavigation";
 import BlogContent from "./BlogContent";
-import BlogRelatedPostsNavigation from "./BlogRelatedPostsNavigater";
 import BlogAudioHeader from "./BlogAudioHeader";
 
 type AudioBlogProps = {

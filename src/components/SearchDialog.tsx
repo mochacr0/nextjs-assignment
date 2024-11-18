@@ -8,12 +8,12 @@ const SearchDialog: React.FC = () => {
             type="search"
             className="search-field"
             placeholder="Type Your Keywords"
-            name="s"
+            name="search"
             title="Search for:"
             autoComplete="off"
           />
         </label>
-        <input type="submit" className="search-submit" value="Search" />
+        <input type="submit" className="search-submit" value="search" />
       </form>
 
       <a href="#" id="close-search" className="close-btn">

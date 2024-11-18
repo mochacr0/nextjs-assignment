@@ -75,8 +75,6 @@ const Footer = () => {
                 />
 
                 <input type="submit" name="subscribe" />
-
-                <label htmlFor="mc-email" className="subscribe-message"></label>
               </form>
             </div>
           </div>

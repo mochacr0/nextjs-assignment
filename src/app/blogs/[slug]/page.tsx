@@ -1,8 +1,8 @@
 import { getBlogBySlug } from "@/common/data/blogData";
-import AudioBlog from "@/components/AudioBlog";
-import GalleryBlog from "@/components/GalleryBlog";
-import StandardBlog from "@/components/StandardBlog";
-import VideoBlog from "@/components/VideoBlog";
+import AudioBlog from "@/components/blogs/AudioBlog";
+import GalleryBlog from "@/components/blogs/GalleryBlog";
+import StandardBlog from "@/components/blogs/StandardBlog";
+import VideoBlog from "@/components/blogs/VideoBlog";
 import { BlogType } from "@/models/blogModels";
 import { notFound } from "next/navigation";
 

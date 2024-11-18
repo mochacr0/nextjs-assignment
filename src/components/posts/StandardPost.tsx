@@ -1,4 +1,4 @@
-import { BasePostModel as StandardPostProps } from "@/models/postModels";
+import { StandardPostModel as StandardPostProps } from "@/models/postModels";
 import PostContent from "./PostContent";
 
 const StandardPost: React.FC<StandardPostProps> = (props) => {

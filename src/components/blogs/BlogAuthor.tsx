@@ -1,4 +1,5 @@
 import { BlogAuthorModel } from "@/models/blogModels";
+import { v4 as uuidv4 } from "uuid";
 
 type BlogAuthorProps = {
   author: BlogAuthorModel;
@@ -20,7 +21,7 @@ const BlogAuthor = ({ author }: BlogAuthorProps) => {
           <ul className="author-social">
             {author.socialLinks.map((socialLink, index) => {
               return (
-                <li key={index}>
+                <li key={uuidv4()}>
                   <a href={socialLink.url}>{socialLink.platform}</a>
                 </li>
               );
@@ -32,18 +33,4 @@ const BlogAuthor = ({ author }: BlogAuthorProps) => {
   );
 };
 
-{
-  /* <li>
-<a href="#">Facebook</a>
-</li>
-<li>
-<a href="#">Twitter</a>
-</li>
-<li>
-<a href="#">GooglePlus</a>
-</li>
-<li>
-<a href="#">Instagram</a>
-</li> */
-}
 export default BlogAuthor;

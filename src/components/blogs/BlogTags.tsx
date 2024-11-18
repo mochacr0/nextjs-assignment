@@ -1,3 +1,5 @@
+import { v4 as uuidv4 } from "uuid";
+
 type BlogTagsProps = {
   tags: string[];
 };
@@ -7,7 +9,7 @@ const BlogTags = ({ tags }: BlogTagsProps) => {
     <p className="tags">
       <span>Tagged in :</span>
       {tags.map((tag, index) => (
-        <a key={index} href="#">
+        <a key={uuidv4()} href="#">
           {tag}
         </a>
       ))}

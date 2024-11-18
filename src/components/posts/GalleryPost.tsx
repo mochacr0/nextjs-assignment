@@ -1,5 +1,6 @@
 import { GalleryPostModel as GalleryPostProps } from "@/models/postModels";
 import PostContent from "./PostContent";
+import Image from "next/image";
 
 const GalleryPost: React.FC<GalleryPostProps> = (props) => {
   return (
@@ -9,7 +10,7 @@ const GalleryPost: React.FC<GalleryPostProps> = (props) => {
           <ul className="slides">
             {props.imageUrls.map((imageUrl, index) => (
               <li key={`${imageUrl} ${index}`}>
-                <img src={imageUrl} />
+                <Image src={imageUrl} alt={imageUrl} />
               </li>
             ))}
           </ul>

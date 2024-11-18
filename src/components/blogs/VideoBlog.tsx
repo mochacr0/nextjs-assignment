@@ -1,6 +1,6 @@
 import { BlogContentModel, VideoHeaderMedia } from "@/models/blogModels";
 import BlogContent from "./BlogContent";
-import BlogRelatedPostsNavigation from "./BlogRelatedPostsNavigater";
+import BlogRelatedPostsNavigation from "./BlogRelatedPostsNavigation";
 import BlogVideoHeader from "./BlogVideoHeader";
 
 type VideoBlogProps = {

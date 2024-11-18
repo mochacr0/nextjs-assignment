@@ -1,7 +1,7 @@
-import { v4 as uuidv4 } from "uuid";
 import contactService from "@/database/contacts/contactService";
 import { AddContactModel, ContactModel } from "@/models/contactModel";
 import { NextRequest, NextResponse } from "next/server";
+import { v4 as uuidv4 } from "uuid";
 
 export const GET = async (request: NextRequest) => {
   await new Promise((resolve) => setTimeout(resolve, 1000));

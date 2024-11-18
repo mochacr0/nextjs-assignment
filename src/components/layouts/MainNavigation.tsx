@@ -60,19 +60,9 @@ const MainNavigation = async () => {
         </li>
         <li className="has-children">
           {session?.user ? (
-            // <>
-            //   <span>{`Hello, ${session.user.email}`}</span>
-            //   <ul className="sub-menu" style={{ width: "100%" }}>
-            //     <li>
-            //       <a href="/logout" title="">
-            //         Logout
-            //       </a>
-            //     </li>
-            //   </ul>
-            // </>
             <>
               <Image
-                src="/images/avatars/default-user.png" // Replace with the path to your avatar image
+                src="/images/avatars/default-user.png"
                 alt="User Avatar"
                 width={30}
                 height={30}

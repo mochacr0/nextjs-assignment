@@ -49,9 +49,9 @@ const StyleGuidePage = () => {
           </p>
 
           <p>
-            A <a href="#">link</a>,
+            A <a href="#">link</a>,{" "}
             <abbr title="this really isn't a very good description">
-              abbrebation
+              abbrebation{" "}
             </abbr>
             ,<strong>strong text</strong>,<em>em text</em>,
             <del>deleted text</del>, and
@@ -79,7 +79,7 @@ const StyleGuidePage = () => {
           <h3>Small Print</h3>
 
           <p>
-            Buy one widget, get one free!
+            Buy one widget, get one free!{" "}
             <small>
               (While supplies last. Offer expires on the vernal equinox. Not
               valid in Ohio.)
@@ -250,12 +250,11 @@ const StyleGuidePage = () => {
 
           <div className="fluid-video-wrapper">
             <iframe
+              title="video"
               src="http://player.vimeo.com/video/14592941?title=0&amp;byline=0&amp;portrait=0&amp;color=F64B39"
               width="500"
               height="281"
               frameBorder="0"
-              //   webkitallowfullscreen
-              // mozallowfullscreen
               allowFullScreen
             ></iframe>
           </div>

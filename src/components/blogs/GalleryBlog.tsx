@@ -1,6 +1,6 @@
 import { BlogContentModel, GalleryHeaderMedia } from "@/models/blogModels";
 import BlogContent from "./BlogContent";
-import BlogRelatedPostsNavigation from "./BlogRelatedPostsNavigater";
+import BlogRelatedPostsNavigation from "./BlogRelatedPostsNavigation";
 import BlogGalleryHeader from "./BlogGalleryHeader";
 
 type GalleryBlogProps = {

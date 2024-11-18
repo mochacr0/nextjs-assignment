@@ -1,4 +1,4 @@
-import CommentsSection from "@/components/Comments";
+import CommentsSection from "@/components/blogs/Comments";
 
 const BlogLayout = ({
   children,

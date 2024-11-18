@@ -1,14 +1,15 @@
 import { gridPostSlides } from "@/common/data/postData";
-import AudioPost from "@/components/AudioPost";
-import GalleryPost from "@/components/GalleryPost";
-import GridPost from "@/components/GridPost";
-import LinkPost from "@/components/LinkPost";
 import Pagination from "@/components/Pagination";
-import QuotePost from "@/components/QuotePost";
-import StandardPost from "@/components/StandardPost";
-import VideoPost from "@/components/VideoPost";
+import AudioPost from "@/components/posts/AudioPost";
+import GalleryPost from "@/components/posts/GalleryPost";
+import GridPost from "@/components/posts/GridPost";
+import LinkPost from "@/components/posts/LinkPost";
+import QuotePost from "@/components/posts/QuotePost";
+import StandardPost from "@/components/posts/StandardPost";
+import VideoPost from "@/components/posts/VideoPost";
 import contactService from "@/database/contacts/contactService";
 import { PostsPaginationModel } from "@/models/paginationModels";
+import { v4 as uuidv4 } from "uuid";
 
 type HomePageProps = {
   searchParams: Promise<{
@@ -27,6 +28,12 @@ const HomePage = async ({ searchParams }: HomePageProps) => {
     { cache: "no-store" }
   );
   const paginatedPosts: PostsPaginationModel = await response.json();
+  // const paginatedPosts: PostsPaginationModel = {
+  //   items: [],
+  //   hasNext: false,
+  //   totalItems: 0,
+  //   totalPages: 0,
+  // };
 
   return (
     <section id="bricks">
@@ -36,19 +43,20 @@ const HomePage = async ({ searchParams }: HomePageProps) => {
 
           <GridPost slides={gridPostSlides} />
 
-          {paginatedPosts.items.map((post, index) => {
+          {paginatedPosts.items.map((post) => {
+            const key = uuidv4();
             if ("audioSourceUrl" in post) {
-              return <AudioPost key={index} {...post} />;
+              return <AudioPost key={key} {...post} />;
             } else if ("quote" in post) {
-              return <QuotePost key={index} {...post} />;
+              return <QuotePost key={key} {...post} />;
             } else if ("imageUrls" in post) {
-              return <GalleryPost key={index} {...post} />;
+              return <GalleryPost key={key} {...post} />;
             } else if ("link" in post) {
-              return <LinkPost key={index} {...post} />;
+              return <LinkPost key={key} {...post} />;
             } else if ("videoSourceUrl" in post) {
-              return <VideoPost key={index} {...post} />;
+              return <VideoPost key={key} {...post} />;
             } else {
-              return <StandardPost key={index} {...post} />;
+              return <StandardPost key={key} {...post} />;
             }
           })}
         </div>
