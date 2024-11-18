@@ -70,6 +70,11 @@ const MainNavigation = async () => {
               />
               <ul className="sub-menu">
                 <li>
+                  <a href="/manage-contacts" title="">
+                    Contacts
+                  </a>
+                </li>
+                <li>
                   <a href="/logout" title="">
                     Logout
                   </a>
