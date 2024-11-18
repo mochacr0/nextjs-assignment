@@ -160,51 +160,6 @@ export const videoPosts: VideoPostModel[] = [
   },
 ];
 
-const posts: PostModel[] = [
-  ...standardPosts,
-  ...audioPosts,
-  ...quotePosts,
-  ...videoPosts,
-];
-
-export function getPosts({
-  category = "",
-  pageNumber = 0,
-  pageSize = 10,
-}: {
-  category?: string;
-  pageNumber?: number;
-  pageSize?: number;
-} = {}): PostModel[] {
-  let posts: PostModel[] = [
-    ...standardPosts,
-    ...audioPosts,
-    ...quotePosts,
-    ...videoPosts,
-  ];
-
-  // Filter posts by category
-  if (category.length > 0) {
-    posts = posts.filter((post) => {
-      return (
-        "categories" in post &&
-        post.categories
-          .map((category) => category.toLowerCase())
-          .includes(category.toLowerCase())
-      );
-    });
-  }
-
-  // Paginate postss
-  const startSliceIndex = pageSize * pageNumber;
-  const endSliceIndex = startSliceIndex + pageSize;
-  posts = posts.slice(startSliceIndex, endSliceIndex);
-
-  // Shuffle posts
-  posts.sort(() => Math.random() - 0.5);
-  return posts;
-}
-
 export function paginatePosts({
   category = "",
   pageNumber = 0,

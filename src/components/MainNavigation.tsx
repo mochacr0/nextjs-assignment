@@ -1,13 +1,17 @@
+import { authOptions } from "@/app/api/auth/[...nextauth]/authOptions";
 import { blogs } from "@/common/data/blogData";
 import { categories } from "@/common/data/categoryData";
-import Link from "next/link";
+import { getServerSession } from "next-auth";
+import Image from "next/image";
 
-const MainNavigation: React.FC = () => {
+const MainNavigation = async () => {
+  const session = await getServerSession(authOptions);
+
   return (
     <nav id="main-nav-wrap">
       <ul className="main-navigation sf-menu">
         <li className="current">
-          <a href="index.html" title="">
+          <a href="/" title="">
             Home
           </a>
         </li>
@@ -26,7 +30,7 @@ const MainNavigation: React.FC = () => {
           </ul>
         </li>
         <li className="has-children">
-          <a href="single-standard.html" title="">
+          <a href="/blogs/standard-blog" title="">
             Blog
           </a>
           <ul className="sub-menu">
@@ -37,18 +41,6 @@ const MainNavigation: React.FC = () => {
                 </li>
               );
             })}
-            {/* <li>
-              <a href="single-video.html">Video Post</a>
-            </li>
-            <li>
-              <a href="single-audio.html">Audio Post</a>
-            </li>
-            <li>
-              <a href="single-gallery.html">Gallery Post</a>
-            </li>
-            <li>
-              <a href="single-standard.html">Standard Post</a>
-            </li> */}
           </ul>
         </li>
         <li>
@@ -65,6 +57,40 @@ const MainNavigation: React.FC = () => {
           <a href="/contact" title="">
             Contact
           </a>
+        </li>
+        <li className="has-children">
+          {session?.user ? (
+            // <>
+            //   <span>{`Hello, ${session.user.email}`}</span>
+            //   <ul className="sub-menu" style={{ width: "100%" }}>
+            //     <li>
+            //       <a href="/logout" title="">
+            //         Logout
+            //       </a>
+            //     </li>
+            //   </ul>
+            // </>
+            <>
+              <Image
+                src="/images/avatars/default-user.png" // Replace with the path to your avatar image
+                alt="User Avatar"
+                width={30}
+                height={30}
+                className="avatar"
+              />
+              <ul className="sub-menu">
+                <li>
+                  <a href="/logout" title="">
+                    Logout
+                  </a>
+                </li>
+              </ul>
+            </>
+          ) : (
+            <a href="/login" title="">
+              Login
+            </a>
+          )}
         </li>
       </ul>
     </nav>

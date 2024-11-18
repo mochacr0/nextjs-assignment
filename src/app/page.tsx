@@ -7,6 +7,8 @@ import Pagination from "@/components/Pagination";
 import QuotePost from "@/components/QuotePost";
 import StandardPost from "@/components/StandardPost";
 import VideoPost from "@/components/VideoPost";
+import { PostsPaginationModel } from "@/models/paginationModels";
+import { useEffect } from "react";
 
 type HomePageProps = {
   searchParams: Promise<{
@@ -18,7 +20,12 @@ type HomePageProps = {
 
 const HomePage = async ({ searchParams }: HomePageProps) => {
   const { category, pageNumber, pageSize } = await searchParams;
-  const paginatedPosts = paginatePosts({ category, pageNumber, pageSize: 3 });
+
+  const response = await fetch(
+    `${process.env.BASE_API_URL}/posts/?category=${category}&pageNumber=${pageNumber}`,
+    { cache: "no-store" }
+  );
+  const paginatedPosts: PostsPaginationModel = await response.json();
 
   return (
     <section id="bricks">
