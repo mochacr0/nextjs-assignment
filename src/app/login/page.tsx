@@ -36,7 +36,7 @@ const LoginPage = () => {
     }
 
     setIsLoading(true);
-    setFinalError(""); // Clear any previous final error message
+    setFinalError("");
     try {
       const loginResponse = await signIn("credentials", {
         email,

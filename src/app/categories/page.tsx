@@ -1,4 +1,3 @@
-import { paginatePosts } from "@/common/data/postData";
 import AudioPost from "@/components/AudioPost";
 import GalleryPost from "@/components/GalleryPost";
 import LinkPost from "@/components/LinkPost";
@@ -6,6 +5,7 @@ import Pagination from "@/components/Pagination";
 import QuotePost from "@/components/QuotePost";
 import StandardPost from "@/components/StandardPost";
 import VideoPost from "@/components/VideoPost";
+import { PostsPaginationModel } from "@/models/paginationModels";
 
 type CategoriesPageProps = {
   searchParams: Promise<{
@@ -17,7 +17,12 @@ type CategoriesPageProps = {
 
 const CategoriesPage = async ({ searchParams }: CategoriesPageProps) => {
   const { category, pageNumber, pageSize } = await searchParams;
-  const paginatedPosts = paginatePosts({ category, pageNumber, pageSize: 3 });
+
+  const response = await fetch(
+    `${process.env.BASE_API_URL}/posts/?category=${category}&pageNumber=${pageNumber}&pageSize=${pageSize}`,
+    { cache: "no-store" }
+  );
+  const paginatedPosts: PostsPaginationModel = await response.json();
 
   return (
     <>

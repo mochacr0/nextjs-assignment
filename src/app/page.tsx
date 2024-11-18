@@ -1,4 +1,4 @@
-import { gridPostSlides, paginatePosts } from "@/common/data/postData";
+import { gridPostSlides } from "@/common/data/postData";
 import AudioPost from "@/components/AudioPost";
 import GalleryPost from "@/components/GalleryPost";
 import GridPost from "@/components/GridPost";
@@ -7,8 +7,8 @@ import Pagination from "@/components/Pagination";
 import QuotePost from "@/components/QuotePost";
 import StandardPost from "@/components/StandardPost";
 import VideoPost from "@/components/VideoPost";
+import contactService from "@/database/contacts/contactService";
 import { PostsPaginationModel } from "@/models/paginationModels";
-import { useEffect } from "react";
 
 type HomePageProps = {
   searchParams: Promise<{
@@ -19,10 +19,11 @@ type HomePageProps = {
 };
 
 const HomePage = async ({ searchParams }: HomePageProps) => {
+  contactService.readContacts();
   const { category, pageNumber, pageSize } = await searchParams;
 
   const response = await fetch(
-    `${process.env.BASE_API_URL}/posts/?category=${category}&pageNumber=${pageNumber}`,
+    `${process.env.BASE_API_URL}/posts/?category=${category}&pageNumber=${pageNumber}&pageSize=${pageSize}`,
     { cache: "no-store" }
   );
   const paginatedPosts: PostsPaginationModel = await response.json();

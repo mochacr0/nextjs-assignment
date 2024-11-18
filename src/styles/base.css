@@ -885,9 +885,42 @@ input.full-width {
   margin-top: 1rem;
 }
 
+.success-message {
+  text-align: center;
+  color: green;
+  font-size: 1em;
+  margin-top: 1rem;
+  font-weight: 700;
+}
+
 .user-menu {
   position: relative;
   display: inline-block;
+}
+
+.contact-table-container {
+  position: relative;
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.contact-table-container th {
+  position: sticky;
+  top: 0;
+  background-color: #f2f2f2; /* Ensure the header has a background color */
+  z-index: 1;
+}
+
+.contact-table-container tr:nth-child(odd) {
+  background-color: #f9f9f9;
+}
+
+.contact-table-container tr:hover {
+  background-color: #f1f1f1;
+}
+
+.contact-table-container .message-column {
+  width: 40%;
 }
 
 @media only screen and (max-width: 768px) {

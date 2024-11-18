@@ -1,0 +1,42 @@
+[
+  {
+    "id": "0e9a38e1-f031-447d-8161-80cec40dd218",
+    "name": "John Doe",
+    "email": "johndoe@email.com",
+    "website": "John Doe Company",
+    "message": "Hello, I am John Doe",
+    "createdAt": "2024-11-18T09:34:51.873Z"
+  },
+  {
+    "id": "6c3577cc-373a-456d-9b18-d5ecb15c98e3",
+    "name": "Jane Smith",
+    "email": "janesmith@email.com",
+    "website": "Jane Smith Enterprises",
+    "message": "Hi, I am Jane Smith",
+    "createdAt": "2024-11-18T09:34:51.873Z"
+  },
+  {
+    "id": "d1b6585e-9331-4427-808a-6d4afc4371b9",
+    "name": "Alice Johnson",
+    "email": "alicejohnson@email.com",
+    "website": "Alice Johnson LLC",
+    "message": "Greetings, I am Alice Johnson",
+    "createdAt": "2024-11-18T09:34:51.873Z"
+  },
+  {
+    "id": "fddf037f-93dc-409a-9ca0-ec1e568b0fdb",
+    "name": "Bob Brown",
+    "email": "bobbrown@email.com",
+    "website": "Bob Brown Inc.",
+    "message": "Hello, I am Bob Brown",
+    "createdAt": "2024-11-18T09:34:51.873Z"
+  },
+  {
+    "id": "25e00bda-c794-4508-9a14-15895375b2c4",
+    "name": "Charlie Davis",
+    "email": "charliedavis@email.com",
+    "website": "Charlie Davis Co.",
+    "message": "Hi, I am Charlie Davis",
+    "createdAt": "2024-11-18T09:34:51.873Z"
+  }
+]

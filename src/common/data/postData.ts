@@ -162,8 +162,8 @@ export const videoPosts: VideoPostModel[] = [
 
 export function paginatePosts({
   category = "",
-  pageNumber = 0,
-  pageSize = 10,
+  pageNumber,
+  pageSize,
 }: {
   category?: string;
   pageNumber?: number;
@@ -176,8 +176,14 @@ export function paginatePosts({
     ...videoPosts,
   ];
 
+  pageNumber = Number(pageNumber) || 0;
+  pageSize = Number(pageSize) || 10;
+  if (category === "undefined" || category === null) {
+    category = "";
+  }
+
   // Filter posts by category
-  if (category.length > 0) {
+  if (category?.length > 0) {
     posts = posts.filter((post) => {
       return (
         "categories" in post &&
@@ -194,11 +200,11 @@ export function paginatePosts({
   // Paginate postss
   const startSliceIndex = pageNumber * pageSize;
   const endSliceIndex = startSliceIndex + pageSize;
+
   posts = posts.slice(startSliceIndex, endSliceIndex);
 
   // Shuffle posts
   posts.sort(() => Math.random() - 0.5);
-
   const paginatedPosts: PostsPaginationModel = {
     items: posts,
     totalItems,

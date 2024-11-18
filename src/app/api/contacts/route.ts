@@ -1,9 +1,29 @@
+import { v4 as uuidv4 } from "uuid";
+import contactService from "@/database/contacts/contactService";
+import { AddContactModel, ContactModel } from "@/models/contactModel";
 import { NextRequest, NextResponse } from "next/server";
 
 export const GET = async (request: NextRequest) => {
-  const authCookie = request.cookies.get("isAuthenticated");
-  if (!authCookie) {
-    return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
-  }
-  return NextResponse.json({ message: "Sample contacts" });
+  await new Promise((resolve) => setTimeout(resolve, 1000));
+  const contacts = await contactService.readContacts();
+  return NextResponse.json({
+    items: contacts,
+  });
+};
+
+export const POST = async (request: NextRequest) => {
+  const addContactRequest: AddContactModel = await request.json();
+
+  const newContact: ContactModel = {
+    ...addContactRequest,
+    id: uuidv4().toString(),
+    createdAt: new Date().toISOString(),
+  };
+
+  const addedContact = await contactService.addContact(newContact);
+
+  return NextResponse.json({
+    message: "Contact added successfully",
+    data: addedContact,
+  });
 };

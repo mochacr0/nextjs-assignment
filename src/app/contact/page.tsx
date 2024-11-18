@@ -1,4 +1,73 @@
+"use client";
+
+import Preloader from "@/components/Preloader";
+import { AddContactModel } from "@/models/contactModel";
+import { useState } from "react";
+
 const ContactPage = () => {
+  const [errors, setErrors] = useState({
+    name: "",
+    email: "",
+    website: "",
+    message: "",
+  });
+  const [finalError, setFinalError] = useState("");
+  const [successMessage, setSuccessMessage] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    const addContactData: AddContactModel = {
+      name: event.currentTarget.contactName.value,
+      email: event.currentTarget.email.value,
+      website: event.currentTarget.website.value,
+      message: event.currentTarget.message.value,
+    };
+    let hasError = false;
+
+    const newErrors = { name: "", email: "", website: "", message: "" };
+    for (const [key, value] of Object.entries(addContactData) as [
+      keyof AddContactModel,
+      any
+    ][]) {
+      if (!value) {
+        newErrors[key] = `${key} is required`;
+        hasError = true;
+      }
+    }
+
+    setErrors(newErrors);
+    if (hasError) {
+      return;
+    }
+
+    setIsLoading(true);
+    setFinalError("");
+    setSuccessMessage("");
+
+    try {
+      const addContactResponse = await fetch("/api/contacts", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(addContactData),
+      });
+
+      if (addContactResponse.ok) {
+        setSuccessMessage("Contact added successfully");
+      } else {
+        console.error("Failed to add contact");
+      }
+    } catch (error) {
+      console.error("An error occurred", error);
+      setFinalError("An unexpected error occurred");
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   return (
     <section id="content-wrap" className="site-page">
       <div className="row">
@@ -61,58 +130,79 @@ const ContactPage = () => {
                 </div>
               </div>
 
-              <form name="cForm" id="cForm" method="post" action="">
-                <fieldset>
-                  <div className="form-field">
-                    <input
-                      name="cName"
-                      type="text"
-                      id="cName"
-                      className="full-width"
-                      placeholder="Your Name"
-                    />
-                  </div>
+              <form
+                name="cForm"
+                id="cForm"
+                method="post"
+                action=""
+                onSubmit={handleSubmit}
+              >
+                <div className="form-field">
+                  <input
+                    name="contactName"
+                    type="text"
+                    id="contactName"
+                    className="full-width"
+                    placeholder="Your Name"
+                  />
+                  {errors.name && <span className="error">{errors.name}</span>}
+                </div>
 
-                  <div className="form-field">
-                    <input
-                      name="cEmail"
-                      type="text"
-                      id="cEmail"
-                      className="full-width"
-                      placeholder="Your Email"
-                    />
-                  </div>
+                <div className="form-field">
+                  <input
+                    name="email"
+                    type="text"
+                    id="email"
+                    className="full-width"
+                    placeholder="Your Email"
+                  />
+                  {errors.email && (
+                    <span className="error">{errors.email}</span>
+                  )}
+                </div>
 
-                  <div className="form-field">
-                    <input
-                      name="cWebsite"
-                      type="text"
-                      id="cWebsite"
-                      className="full-width"
-                      placeholder="Website"
-                    />
-                  </div>
+                <div className="form-field">
+                  <input
+                    name="website"
+                    type="text"
+                    id="website"
+                    className="full-width"
+                    placeholder="Website"
+                  />
+                  {errors.website && (
+                    <span className="error">{errors.website}</span>
+                  )}
+                </div>
 
-                  <div className="message form-field">
-                    <textarea
-                      name="cMessage"
-                      id="cMessage"
-                      className="full-width"
-                      placeholder="Your Message"
-                    ></textarea>
-                  </div>
+                <div className="message form-field">
+                  <textarea
+                    name="message"
+                    id="message"
+                    className="full-width"
+                    placeholder="Your Message"
+                  ></textarea>
+                  {errors.message && (
+                    <span className="error">{errors.message}</span>
+                  )}
+                </div>
 
-                  <button
-                    type="submit"
-                    className="submit button-primary full-width-on-mobile"
-                  >
-                    Submit
-                  </button>
-                </fieldset>
+                <button
+                  type="submit"
+                  className="submit button-primary full-width-on-mobile"
+                >
+                  Submit
+                </button>
+                {finalError && (
+                  <div className="error final-error">{finalError}</div>
+                )}
+                {successMessage && (
+                  <div className="success-message">{successMessage}</div>
+                )}
               </form>
             </div>
           </section>
         </div>
+        {isLoading && <Preloader />}
       </div>
     </section>
   );
